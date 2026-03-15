@@ -256,7 +256,7 @@ export function SessionItem({
         )}
       </button>
 
-      {/* Archive button — hover reveal (desktop), always visible (mobile) */}
+      {/* Archive button — hover reveal on devices with hover capability; touch users use the three-dot menu */}
       {!archived && !isEditing && !menuOpen && (
         <button
           onClick={(e) => {

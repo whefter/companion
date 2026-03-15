@@ -709,12 +709,17 @@ export function Sidebar() {
           onClick={toggleNav}
           aria-expanded={navExpanded}
           aria-label={navExpanded ? "Collapse navigation" : "Expand navigation"}
+          aria-controls="sidebar-nav"
           className="w-full flex items-center justify-between px-2 py-1 text-[10px] font-semibold uppercase tracking-[0.14em] text-cc-muted/75 hover:text-cc-fg hover:bg-cc-hover rounded-md transition-colors cursor-pointer"
         >
           <span>Navigation</span>
           <svg
             viewBox="0 0 16 16"
-            fill="currentColor"
+            fill="none"
+            stroke="currentColor"
+            strokeWidth="2"
+            strokeLinecap="round"
+            strokeLinejoin="round"
             className={`w-2.5 h-2.5 transition-transform duration-150 ${navExpanded ? "rotate-180" : ""}`}
           >
             <path d="M4 6l4 4 4-4" />
@@ -723,7 +728,7 @@ export function Sidebar() {
 
         {navExpanded && (
           <>
-            <nav className="flex flex-col gap-1.5 mt-1" aria-label="Navigation">
+            <nav id="sidebar-nav" className="flex flex-col gap-1.5 mt-1" aria-label="Navigation">
               {NAV_SECTIONS.map((section) => (
                 <section key={section.id} className="rounded-lg border border-cc-border/30 bg-cc-card/20 p-0.5">
                   <span className="px-2 py-0.5 text-[10px] font-semibold uppercase tracking-[0.14em] text-cc-muted/75 block">
