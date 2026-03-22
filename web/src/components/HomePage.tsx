@@ -625,7 +625,7 @@ export function HomePage() {
       // Create session with progress streaming
       const result = await createSessionStream(
         {
-          model,
+          model: model || undefined,
           permissionMode: mode,
           cwd: effectiveCwd || undefined,
           envSlug: selectedEnv || undefined,

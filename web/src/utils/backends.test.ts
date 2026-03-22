@@ -7,6 +7,7 @@ import {
   getDefaultModel,
   getDefaultMode,
   getDefaultAgentMode,
+  AUTO_MODEL,
   CLAUDE_MODELS,
   CODEX_MODELS,
   CLAUDE_MODES,
@@ -95,8 +96,9 @@ describe("getModesForBackend", () => {
 });
 
 describe("getDefaultModel", () => {
-  it("returns first claude model for claude backend", () => {
-    expect(getDefaultModel("claude")).toBe(CLAUDE_MODELS[0].value);
+  it("returns auto (empty string) for claude backend", () => {
+    expect(getDefaultModel("claude")).toBe(AUTO_MODEL);
+    expect(getDefaultModel("claude")).toBe("");
   });
 
   it("returns first codex model for codex backend", () => {
@@ -141,8 +143,9 @@ describe("static model/mode lists", () => {
     }
   });
 
-  it("has claude models with claude- prefix", () => {
+  it("has claude models with claude- prefix (except auto)", () => {
     for (const m of CLAUDE_MODELS) {
+      if (m.value === "") continue; // Auto model has empty value
       expect(m.value).toMatch(/^claude-/);
     }
   });

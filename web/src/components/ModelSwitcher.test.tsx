@@ -146,13 +146,15 @@ describe("ModelSwitcher", () => {
     expect(container.innerHTML).toBe("");
   });
 
-  it("is hidden when session has no model set", () => {
+  it("shows Auto when session has no model set", () => {
+    // When no model is set, the Auto option (empty string value) matches,
+    // showing the user they're using the CLI's configured model
     resetStore({
       sdkSessions: [{ sessionId: "s1", backendType: "claude", cwd: "/repo" }],
       sessions: new Map([["s1", {}]]),
     });
-    const { container } = render(<ModelSwitcher sessionId="s1" />);
-    expect(container.innerHTML).toBe("");
+    render(<ModelSwitcher sessionId="s1" />);
+    expect(screen.getByText("Auto (from CLI config)")).toBeInTheDocument();
   });
 
   it("shows raw model string for unrecognized models", () => {

@@ -37,9 +37,15 @@ export function toModelOptions(models: BackendModelInfo[]): ModelOption[] {
   }));
 }
 
+// ─── Constants ──────────────────────────────────────────────────────────────
+
+/** Sentinel value: omit --model so the CLI uses its own configured model. */
+export const AUTO_MODEL = "";
+
 // ─── Static fallbacks ────────────────────────────────────────────────────────
 
 export const CLAUDE_MODELS: ModelOption[] = [
+  { value: AUTO_MODEL, label: "Auto (from CLI config)", icon: "\u2699" },
   { value: "claude-opus-4-6", label: "Opus 4.6", icon: "" },
   { value: "claude-sonnet-4-6", label: "Sonnet 4.6", icon: "" },
   { value: "claude-haiku-4-5-20251001", label: "Haiku 4.5", icon: "" },
